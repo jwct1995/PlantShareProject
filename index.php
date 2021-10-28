@@ -2,121 +2,15 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Plant's Info</title>
-		<link rel="stylesheet" href="style.css" type="text/css">
+		<link rel="stylesheet" href="css.css" type="text/css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="js.js"></script>
 	</head>
     <style>
-    .CPointer
-    {
-        cursor: pointer;
-    }
-    #canvas
-    {
-        position: fixed;
-        z-index: 1;
-        padding-top: 100px;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0,0,0,0.8);
-        color:white;
-    }
-    .divCenter
-    {
-        margin: auto;
-        display: block;
-        width: 80%;
-        max-width: 700px;
-        text-align: center;
-        color: #ccc;
-        padding: 10px 0;
-        height: 150px;
-    }
-    #canvas,#divUpload,#divShowInfo{display: none;}
 
-    #canvas
-    {
-        animation-name: fadein;
-        animation-duration: 0.3s;
-    }
-    @keyframes fadein
-    {
-        from {transform:scale(0)}
-        to {transform:scale(1)}
-    }
-    #btnCloseCanvas
-    {
-        position: fixed;
-        top: 10px;
-        right: 10px;
-        text-decoration: underline;
-    }
-    #divBanner
-    {
-        width: 100%;
-        /*height: 45px;*/
-        padding: 0px 10px 0px 10px;
-    }
-    .divMenu
-    {
-        background-color: green;
-        width:70px;
-        height: 40px;
-        /*border-style: solid;
-        border-width: 2px;*/
-        display: inline-block;
-        text-align: center;
-        vertical-align: middle;
-        line-height: 40px;
-    }
-    img
-    {
-        width: 200px;
-    }
     </style>
     <script>
-    $(function()
-    {
-        //alert(window.location.origin);
-    });
-    $(document).ready(function()
-    {
-        $("#menuHomeBtn").click(function()
-        {
-            //$("#canvas").css("display","unset");
-            //window.location.href = window.location.origin+"//PlantShareProject/";
-            window.location.href ="http://localhost:8080/php/github/PlantShareProject/";
-        });
-//#divUpload,#divShowInfo
-        $("#menuUploadBtn").click(function()
-        {
-            $("#canvas").css("display","block");
-            $("#divUpload").css("display","table");
-        });
 
-
-
-        $("#btnCloseCanvas").click(function()
-        {
-            $("#canvas, #divUpload, #divShowInfo").css("display","none");
-        });
-
-    });
-    var openFile = function(file)
-    {
-        var input = file.target;
-
-        var reader = new FileReader();
-        reader.onload = function()
-        {
-          var dataURL = reader.result;
-          var output = document.getElementById('AddNewPlantImg');
-          output.src = dataURL;
-        };
-        reader.readAsDataURL(input.files[0]);
-      };
     </script>
     <body style="margin:0px;padding:0px;">
 
@@ -130,15 +24,26 @@
 -->
         <div id="canvas">
             <div id="btnCloseCanvas" class="CPointer"> close X </div>
-            <div id="divUpload" class="divCenter" style="background-color:white;">
-                <h3>Add New Plant</h3>
+            <div class="divCenter" style="background-color:white; display:table;">
+                <h3 id="showTitle">Add New Plant</h3>
                 <div style="display: inline-block;">
                     <table>
                         <tr>
                             <td>
                                 <center>
-                                    <img id="AddNewPlantImg" src="//upload.wikimedia.org/wikipedia/commons/thumb/5/59/-127wiki.jpg/479px--127wiki.jpg">
-                                    <input type='file' id='mimg' name='mimg' accept='image/png, image/jpeg, image/jpg' onchange='openFile(event)'>
+                                    <img id="ShowImg" style="max-width: 200px;max-height: 300px;" src="no-image.jpg">
+									<br>
+
+
+
+									<form id="Img_form" type="post" enctype="multipart/form-data">
+										<input type="file" id="img_file" name="img_file" onchange="openFile(event)">
+									</form>
+                                    <!--<input type='file' id='inImg' name='inImg' accept='image/png, image/jpeg, image/jpg' onchange='openFile(event)'>-->
+									<div id="divSocialMedia">
+										<div id="btnLike" class="SocialMedia" >Like</div>
+										<div class="SocialMedia">Share</div>
+									</div>
                                 </center>
 
                             </td>
@@ -149,59 +54,134 @@
                                             <img src="//upload.wikimedia.org/wikipedia/commons/thumb/5/59/-127wiki.jpg/479px--127wiki.jpg">
                                         </td>
                                     </tr>-->
-                                    <tr>
-                                        <td>Name : </td>
+									<tr id="trBtnLR">
+										<td colspan="2">
+											<arw id="btnL"class="CPointer" style=""> << </arw>
+											<!--<div style="position: fixed;right: 10px;"> >> </div>-->
+										</td>
+										<td><arw id="btnR" class="CPointer" style="left: -25px;position: relative;"> >> </arw></td>
+									</tr>
+									<tr id="trBtnEdit">
+										<td colspan="2">
+											<!--<input id="btnEditPlant" type="button" value="Edit">-->
+										</td>
+										<td>
+											<input id="btnEditPlant" type="button" value="Edit" style="position: relative;left: -50px;">
+										</td>
+									</tr>
+
+									<tr id="trDName">
+										<td colspan="2"><h2 id="lblName" style="min-width: 150px;">Show Name hello plant</h2></td>
+									</tr>
+                                    <tr id="trIName">
+                                        <td style="text-align: right;">Name : </td>
                                         <td><input type="text" id="inName"></td>
                                     </tr>
-                                    <tr>
-                                        <td>Size : </td>
+									<tr id="trDSize">
+										<td colspan="2"><h5 id="lblSize">Show Size 99XL</h5></td>
+									</tr>
+                                    <tr id="trISlc">
+                                        <td style="text-align: right;">Size : </td>
                                         <td>
-                                            <select>
-                                                <option>qwe</option>
+                                            <select id="inSlc">
+                                                <option>99XL</option>
                                                 <option>asd</option>
                                                 <option>zxc</option>
                                                 <option>edc</option>
                                             </select>
                                         </td>
                                     </tr>
-                                    <tr>
+									<tr id="trDDesc">
+										<td colspan="2"><p id="lblDesc">Show desc asdasdasdasdasdasdads</p></td>
+									</tr>
+                                    <tr id="trIDescL">
                                         <td>Description : </td>
-                                        <td><textarea id="inDesc"></textarea></td>
                                     </tr>
+									<tr id="trIDesc">
+										<td colspan="2" ><textarea id="inDesc" style="width:100%; height:180px;"></textarea></td>
+									</tr>
+									<tr id="trBtnRow">
+										<td colspan="99">
+											<center>
+												<input id="btnAddPlant" type="button" value="Submit">
+												<input id="btnUpdatePlant" type="button" value="Update">
+		                                    	<input id="btnReset" type="button" value="Reset">
+											</center>
+										</td>
+									</tr>
                                 </table>
                             </td>
                         </tr>
-                        <tr>
+                        <!--<tr>
                             <td colspan="99">
                                 <center>
                                     <input id="btnAddNewPlant" type="button" value="Submit">
                                     <input id="btnResetNewPlant" type="button" value="Reset">
                                 </center>
                             </td>
-                        </tr>
+                        </tr>-->
                     </table>
 
 
                 </div>
             </div>
-            <div id="divShowInfo" class="divCenter">
-                show info
-            </div>
+			<!--
+            <div id="divShowInfo" class="divCenter" style="background-color:white;">
+				<h3>Show Plant Info</h3>
+				<div style="display: inline-block;">
+                	<table>
+						<tr>
+							<td>
+
+							</td>
+							<td></td>
+						</tr>
+					</table>
+				</div>
+            </div>-->
         </div>
 
 
-        <div id="divBanner" style="background-color:pink;">
-            menu
+        <div id="divBanner" style="background-color:#0f4a21;">
             <div id="menuHomeBtn"  class="divMenu CPointer">Home</div>
             <div id="menuUploadBtn" class="divMenu CPointer">Upload</div>
-            <div id="menuEditBtn" class="divMenu CPointer">Edit</div>
+            <!--<div id="menuEditBtn" class="divMenu CPointer">Edit</div>
+			<div name="btnShowInfo" class="divMenu CPointer">Show</div>-->
         </div>
 
 
-        <div id="divBody" style="background-color:blue;">
-            <div id="divMain">
-                main
-            </div>
+        <div id="divBody" style="background-color:white;">
+            <div id="divMain" style="text-align: center;">
+                <div name="divMainAry" class="displaySlot">
+					<img class="mainImg" src="http://qnimate.com/wp-content/uploads/2014/03/images2.jpg">
+					<h4>Name 1</h4>
+				</div>
+				<div name="divMainAry" class="displaySlot">
+					<img class="mainImg" src="http://qnimate.com/wp-content/uploads/2014/03/images2.jpg">
+					<h4>Name 2</h4>
+				</div>
+				<div name="divMainAry" class="displaySlot">
+					<img class="mainImg" src="http://qnimate.com/wp-content/uploads/2014/03/images2.jpg">
+					<h4>Name 3</h4>
+				</div>
+				<div name="divMainAry" class="displaySlot">
+					<img class="mainImg" src="http://qnimate.com/wp-content/uploads/2014/03/images2.jpg">
+					<h4>Name 4</h4>
+				</div>
+				<div id="aa" name="divMainAry" class="displaySlot haha huhu">
+					<img class="mainImg" src="http://qnimate.com/wp-content/uploads/2014/03/images2.jpg">
+					<h4>Name 5</h4>
+				</div>
+
+
+		    </div>
+			<div id="divMainShowAllBtn">
+				<center>
+					<div id="btnShowAll">
+						Show All
+					</div>
+				</center>
+			</div>
 
         </div>
     </body>

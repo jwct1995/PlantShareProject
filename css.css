@@ -1,0 +1,193 @@
+.CPointer
+{
+    cursor: pointer;
+}
+#canvas
+{
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+    color:white;
+}
+.divCenter
+{
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+#canvas,#divUpload,#divShowInfo{display: none;}
+
+#canvas
+{
+    animation-name: fadein;
+    animation-duration: 0.3s;
+}
+@keyframes fadein
+{
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+#btnCloseCanvas
+{
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    text-decoration: underline;
+}
+#divBanner
+{
+    width: 100%;
+    /*height: 45px;*/
+    padding: 0px 10px 0px 10px;
+}
+.divMenu
+{
+    background-color: green;
+    width:70px;
+    height: 40px;
+    /*border-style: solid;
+    border-width: 2px;*/
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 40px;
+    border-style: solid;
+    border-color: #0f4a21;
+    border-width: 5px;
+}
+.divMenu:hover
+{
+    border-color: #7bc792;
+    background-color: #135613;
+    color: white;
+}
+img
+{
+    width: 200px;
+    max-height: 250px;
+}
+.SocialMedia
+{display: inline-block;}
+
+
+#trBtnLR > td > arw
+{
+    background-color: #e5e5e5;
+    padding: 4px;
+    border-style: solid;
+    border-color: #e5e5e5;
+    border-width: 3px;
+    color: black;
+    font-size: 15px;
+}
+#trBtnLR > td > arw:hover
+{
+    background-color: black;
+    border-color: #e5e5e5;
+    color: #e5e5e5;
+
+}
+
+#btnLike
+{
+    background-color: #787878;
+    padding: 3px 10px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #787878;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bolder;
+    cursor: pointer;
+}
+#btnLike:hover
+{
+    background-color: #b7b7b7;
+    border-color: #b6ff98;
+    color: #3a3a3a;
+}
+/*
+////////////////////////////////
+////////////////////////////////
+////////////////////////////////
+*/
+.displaySlot
+{
+    background-color: #edefdd;
+    width: 200px;
+    /*height: 150px;*/
+    height: auto;
+    margin: 10px 30px 10px 30px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    border-style: solid;
+    border-color: white;
+    overflow: hidden;
+    animation: fadein 2s;
+}
+
+.displaySlot:hover
+{
+    border-style: solid;
+    border-color: #c9b7a1;
+}
+.displaySlot > h4
+{
+    text-align: center;
+}
+
+
+#divMainShowAllBtn
+{
+    text-align: center;
+    width:100%;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+#btnShowAll
+{
+    background: #747474;
+    color: white;
+    font-size: 25px;
+    width: 200px;
+    padding: 5px;
+    animation: fadein 2s;
+}
+#btnShowAll:hover
+{
+    background: white;
+    color: #747474;
+    border-style: solid;
+    border-color: #c5c5c5;
+}
+
+.displaynone
+{
+    display: none;
+}
+
+
+/*
+////////////////////////////////
+////////////////////////////////
+////////////////////////////////
+*/
+
+@keyframes fadein
+{
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
