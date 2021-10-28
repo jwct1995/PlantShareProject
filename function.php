@@ -1,10 +1,5 @@
 <?php
 include "db.php";
-/*
-tblPlant
-pId, pName, pSize, pDesc, pImg, pLikeCount
-if($post=="")
-*/
 
 $post=$_POST["post"];
 

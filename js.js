@@ -3,10 +3,7 @@ var LoadArray=new Array();
 
 $(function()
 {
-    //alert(window.location.origin);
-    //LoadArray=AjaxLoadAry();
     generateDivMainAry();
-    //alert(LoadArray.toString());
 });
 $(document).ready(function()
 {
@@ -52,11 +49,11 @@ $(document).ready(function()
 
     $("#btnEditPlant").click(function()
     {
-        var num=$(this).attr("num");
+        var num=parseInt($(this).attr("num"));
 
         ////reset
         $("#ShowImg").attr("src","no-image.jpg");
-        $("#inSlc").val($("#inSlc option:first").val());
+        //$("#inSlc").val($("#inSlc option:first").val());
         $("#inName , #inDesc , #img_file").val("");
 
         $("#btnUpdatePlant").attr("pid", LoadArray[num]["pid"] );
@@ -154,33 +151,10 @@ $(document).ready(function()
         //window.location.href = window.location.origin+"//PlantShareProject/";
         window.location.href ="http://localhost:8080/php/github/PlantShareProject/";
     });
-//#divUpload,#divShowInfo
-
-
-    /*$("[name='btnShowInfo']").click(function()
-    {
-        $("#canvas").css("display","block");
-        //$("#divShowInfo").css("display","table");
-        //$("#divUpload").css("display","table");
-    });*/
-
 });
-
-
-
-
-
-
-
-
-
-
-
-
 
 function setShowDetail(ele)
 {
-    //alert($(this).attr("num"));
     var num=ele.attr("num");
 
     //set show data
@@ -255,9 +229,6 @@ function generateDivMainAry()
 
     $.each( LoadArray, function( i, val )
     {
-        //$( "#" + i ).append( document.createTextNode( " - " + val ) );
-        //alert(val["pid"]);
-
         var pId,c=0;
         var div=$("<div></div>");
         div.attr({"id":val["pid"],"name":"divMainAry","num":i});
@@ -335,20 +306,6 @@ function AjaxLikePlant()
     });
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function AjaxUpdatePlant()
 {
 
@@ -404,7 +361,6 @@ function AjaxRegPlant()
     var psize=$("#inSlc").find(":selected").text();
     var pdesc=$("#inDesc").val();
     var pimg=uploadFile($("#Img_form"));
-    //alert(pname+"..."+psize+"..."+pdesc+"..."+pimg);
     $.ajax(
     {
         type:"POST",
@@ -460,8 +416,6 @@ function AjaxLoadAry()
     });
 	return rdata;
 }
-
-
 
 //////////////Upload file
 function uploadFile(ele)
